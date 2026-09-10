@@ -6,8 +6,21 @@ on:
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      config_path: config
-      board: nice_nano_v2
-      shield: cygnus_left cygnus_right
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - board: promicro_nrf52840
+            shield: cygnus_left
+          - board: promicro_nrf52840
+            shield: cygnus_right
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: zmkfirmware/zmk/.github/actions/build@main
+        with:
+          board: ${{ matrix.board }}
+          shield: ${{ matrix.shield }}
+          config: config
