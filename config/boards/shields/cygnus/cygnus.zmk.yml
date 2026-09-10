@@ -2,7 +2,7 @@ file_format: "1"
 id: cygnus
 name: Cygnus
 type: shield
-requires: [pro_micro]
+requires: [promicro_nrf52840]
 siblings:
   - cygnus_left
   - cygnus_right
